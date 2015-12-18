@@ -1,8 +1,4 @@
 require "serverspec"
 
-if (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM).nil?
-  set :backend, :exec
-else
-  set :backend, :cmd
-  set :os, family: "windows"
-end
+set :backend, :exec
+set :os, family: "ubuntu", release: "14.04", arch: "x86_64"
