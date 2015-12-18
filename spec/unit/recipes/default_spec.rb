@@ -19,4 +19,8 @@ describe "dev::default" do
       expect(chef_run).to include_recipe(recipe)
     end
   end
+
+  it "sets the default shell for the vagrant user" do
+    expect(chef_run).to run_execute("set default shell")
+  end
 end

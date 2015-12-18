@@ -1,6 +1,10 @@
 require "spec_helper"
 
 describe "dev::default" do
+  describe command("grep \"^vagrant\" /etc/passwd | cut -d ':' -f 7") do
+    its(:stdout) { should eq("/usr/bin/zsh\n") }
+  end
+
   context "zsh" do
     describe command("which zsh") do
       its(:stdout) { should eq("/usr/bin/zsh\n") }

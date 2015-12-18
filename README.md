@@ -1,5 +1,13 @@
 # dev
 
+A cookbook for setting up and configuring dev machines.
+
+## Attributes
+
+Attribute|Description|Default
+---------|-----------|-------
+`node["dev"]["vagrant_shell"]` | The default shell for the vagrant user | `bash`
+
 ## Doing Things
 
 To do any of these things, you'll need [ChefDK] and [Vagrant] installed.

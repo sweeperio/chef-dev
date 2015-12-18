@@ -13,3 +13,5 @@ suites:
     run_list:
       - recipe[dev::default]
     attributes:
+      dev:
+        vagrant_shell: zsh
