@@ -3,9 +3,6 @@ language: ruby
 rvm:
   - 2.2.3
 
-before_install:
-  - bundle install --gemfile=Gemfile.travis
-
 script:
   - bundle exec rubocop
   - bundle exec rspec
