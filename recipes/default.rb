@@ -6,6 +6,7 @@
 
 include_recipe "apt"
 include_recipe "build-essential"
+include_recipe "memcached"
 include_recipe "redisio"
 include_recipe "redisio::enable"
 

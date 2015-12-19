@@ -6,7 +6,30 @@ A cookbook for setting up and configuring dev machines.
 
 Attribute|Description|Default
 ---------|-----------|-------
+`node["dev"]["gems"]` | A list of gems to be installed for each version of ruby | `%w(bundler)`
 `node["dev"]["vagrant_shell"]` | The default shell for the vagrant user | `bash`
+
+## Default Chruby Settings
+
+See [chruby cookbook] for options.
+
+Attribute|Description|Default
+---------|-----------|-------
+`node["chruby"]["auto_switch"]` | Use .ruby-version file for switching | `true`
+`node["chruby"]["default"]` | The default version of ruby | `2.2.3`
+`node["chruby"]["rubies"]` | A hash of ruby versions to be installed/skipped | `2.1.7 and 2.2.3`
+
+[chruby cookbook]: https://github.com/Atalanta/chef-chruby
+
+## Default Memcached Settings
+
+See [memcached cookbook] for options.
+
+Attribute|Description|Default
+---------|-----------|-------
+`node["memcached"]["listen"]` | The address to listen on | `127.0.0.1`
+
+[memcached cookbook]: https://github.com/chef-cookbooks/memcached
 
 ## Doing Things
 

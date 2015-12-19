@@ -16,6 +16,7 @@ describe "dev::default" do
     dev::nginx
     dev::vim
     dev::zsh
+    memcached
     redisio
     redisio::enable
   )

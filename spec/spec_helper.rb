@@ -8,4 +8,6 @@ end
 
 def stub_git_version
   stub_command("git --version >/dev/null").and_return("2.4.4")
+  stub_command("dpkg -s memcached")
+  stub_command("getent passwd memcache")
 end
