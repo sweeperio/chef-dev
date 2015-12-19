@@ -6,6 +6,7 @@
 
 include_recipe "apt"
 include_recipe "build-essential"
+include_recipe "dev::chruby"
 include_recipe "dev::git"
 include_recipe "dev::hub"
 include_recipe "dev::vim"

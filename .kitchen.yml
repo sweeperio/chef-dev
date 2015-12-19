@@ -13,5 +13,14 @@ suites:
     run_list:
       - recipe[dev::default]
     attributes:
+      chruby:
+        default: 2.2.3
+        rubies:
+          1.9.3-p392: false
+          2.1.7: false
+          2.2.3: true
       dev:
+        gems:
+          - bundler
+          - ejson
         vagrant_shell: zsh

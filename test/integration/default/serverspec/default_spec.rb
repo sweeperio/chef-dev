@@ -1,7 +1,13 @@
 require "spec_helper"
 
 describe "dev::default" do
-  APPS = %w(git hub vim zsh)
+  APPS = %w(git hub vim zsh).freeze
+
+  CHRUBY_FILES = %w(
+    /etc/profile.d/chruby.sh
+    /usr/local/share/chruby/chruby.sh
+    /usr/local/share/chruby/auto.sh
+  ).freeze
 
   APPS.each do |app|
     describe command("which #{app}") do
@@ -20,6 +26,20 @@ describe "dev::default" do
   describe command("vim --version") do
     its(:stdout) { should match(/\+ruby/) }
     its(:stdout) { should contain("Vi IMproved 7.4") }
+  end
+
+  context "chruby" do
+    CHRUBY_FILES.each do |path|
+      describe file(path) do
+        it { should be_file }
+      end
+    end
+
+    %w(bundler ejson).each do |gem|
+      describe command("gem list") do
+        its(:stdout) { should contain(gem) }
+      end
+    end
   end
 
   context "zsh" do

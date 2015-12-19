@@ -7,10 +7,11 @@
 require "spec_helper"
 
 describe "dev::default" do
-  INCLUDED_RECIPES = %w(apt build-essential dev::git dev::hub dev::vim dev::zsh)
+  INCLUDED_RECIPES = %w(apt build-essential dev::chruby dev::git dev::hub dev::vim dev::zsh)
 
   cached(:chef_run) do
     runner = ChefSpec::ServerRunner.new
+    stub_git_version
     runner.converge(described_recipe)
   end
 
