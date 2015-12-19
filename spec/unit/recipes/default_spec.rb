@@ -22,9 +22,16 @@ describe "dev::default" do
   )
 
   cached(:chef_run) do
-    runner = ChefSpec::ServerRunner.new
+    runner = ChefSpec::ServerRunner.new do |node|
+      node.set["dev"]["packages"] = %w(curl)
+    end
+
     stub_git_version
     runner.converge(described_recipe)
+  end
+
+  it "installs packages" do
+    expect(chef_run).to install_package("curl")
   end
 
   it "includes recipes" do

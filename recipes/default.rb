@@ -10,6 +10,8 @@ include_recipe "memcached"
 include_recipe "redisio"
 include_recipe "redisio::enable"
 
+node["dev"]["packages"].each { |pkg| package pkg }
+
 %w(chruby git hub nginx vim zsh).each do |recipe|
   include_recipe "dev::#{recipe}"
 end

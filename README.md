@@ -7,6 +7,7 @@ A cookbook for setting up and configuring dev machines.
 Attribute|Description|Default
 ---------|-----------|-------
 `node["dev"]["gems"]` | A list of gems to be installed for each version of ruby | `%w(bundler)`
+`node["dev"]["packages"]` | The set of apt packages to install | `%w(curl silversearcher-ag)`
 `node["dev"]["vagrant_shell"]` | The default shell for the vagrant user | `bash`
 
 ## Default Chruby Settings

@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe "dev::default" do
-  APPS     = %w(git hub memcached redis-server redis-cli vim zsh).freeze
+  APPS     = %w(curl git hub memcached redis-server redis-cli vim zsh).freeze
   SERVICES = %w(memcached nginx redis6379).freeze
 
   CHRUBY_FILES = %w(
