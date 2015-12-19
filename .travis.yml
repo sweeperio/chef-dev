@@ -4,7 +4,7 @@ rvm:
   - 2.2.3
 
 before_install:
-  - bundle install --gemfile=./travis/Gemfile
+  - bundle install --gemfile=Gemfile.travis
 
 script:
   - bundle exec rubocop
