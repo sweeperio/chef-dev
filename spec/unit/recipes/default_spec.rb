@@ -7,7 +7,7 @@
 require "spec_helper"
 
 describe "dev::default" do
-  INCLUDED_RECIPES = %w(dev::zsh)
+  INCLUDED_RECIPES = %w(apt build-essential dev::vim dev::zsh)
 
   cached(:chef_run) do
     runner = ChefSpec::ServerRunner.new

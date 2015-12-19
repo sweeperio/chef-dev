@@ -6,4 +6,7 @@ description "Installs/Configures dev"
 long_description "Installs/Configures dev"
 version "0.1.0"
 
+depends "apt"
+depends "ark"
+depends "build-essential"
 depends "zsh"

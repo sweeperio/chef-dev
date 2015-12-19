@@ -5,6 +5,11 @@ describe "dev::default" do
     its(:stdout) { should eq("/usr/bin/zsh\n") }
   end
 
+  describe command("vim --version") do
+    its(:stdout) { should match(/\+ruby/) }
+    its(:stdout) { should contain("Vi IMproved 7.4") }
+  end
+
   context "zsh" do
     describe command("which zsh") do
       its(:stdout) { should eq("/usr/bin/zsh\n") }
