@@ -1,4 +1,5 @@
 # dev
+[![Build Status](https://travis-ci.org/sweeperio/chef-dev.svg?branch=master)](https://travis-ci.org/sweeperio/chef-dev)
 
 A cookbook for setting up and configuring dev machines.
 
