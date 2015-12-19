@@ -1,0 +1,8 @@
+DO
+$$
+BEGIN
+  IF NOT EXISTS (SELECT rolname FROM pg_roles WHERE rolname='<%= @user %>') THEN
+    CREATE ROLE vagrant WITH CREATEDB CREATEDB LOGIN PASSWORD '<%= @password %>'
+  END IF;
+END
+$$

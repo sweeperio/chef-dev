@@ -6,6 +6,8 @@ A cookbook for setting up and configuring dev machines.
 
 Attribute|Description|Default
 ---------|-----------|-------
+`node["dev"]["database_user"]` | Username to be created for installed databases | `vagrant`
+`node["dev"]["database_password"]` | Password for database_user | `developerPassword1`
 `node["dev"]["gems"]` | A list of gems to be installed for each version of ruby | `%w(bundler)`
 `node["dev"]["packages"]` | The set of apt packages to install | `%w(curl silversearcher-ag)`
 `node["dev"]["vagrant_shell"]` | The default shell for the vagrant user | `bash`

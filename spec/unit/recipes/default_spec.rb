@@ -11,6 +11,7 @@ describe "dev::default" do
     apt
     build-essential
     dev::chruby
+    dev::database
     dev::git
     dev::hub
     dev::nginx

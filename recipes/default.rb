@@ -16,7 +16,7 @@ include_recipe "tmux"
 
 node["dev"]["packages"].each { |pkg| package pkg }
 
-%w(chruby git hub nginx vim zsh).each do |recipe|
+%w(chruby database git hub nginx vim zsh).each do |recipe|
   include_recipe "dev::#{recipe}"
 end
 
