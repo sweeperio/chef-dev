@@ -9,6 +9,7 @@ A cookbook for setting up and configuring dev machines.
 * Installs ruby `2.1.7` and `2.2.3` (defaulted to `2.2.3` with chruby)
 * Installs gems defined in `node["dev"]["gems"]` for all installed ruby versions (see attributes)
 * **If postgresql is installed**, creates a user account for vagrant
+* Sets the default shell for the `vagrant` user (see attributes)
 
 ### Applications
 
@@ -18,6 +19,7 @@ A cookbook for setting up and configuring dev machines.
 * [phantomjs]
 * [vim] - Compiled from source with ruby and python support
 * [tmux]
+* [zsh]
 
 [chruby]: https://github.com/postmodern/chruby
 [fasd]: https://github.com/clvv/fasd
@@ -25,6 +27,7 @@ A cookbook for setting up and configuring dev machines.
 [phantomjs]: http://phantomjs.org/
 [vim]: http://www.vim.org/
 [tmux]: https://tmux.github.io/
+[zsh]: http://www.zsh.org/
 
 ### Services
 
@@ -36,6 +39,24 @@ A cookbook for setting up and configuring dev machines.
 [nginx]: https://openresty.org/
 [Rails]: http://rubyonrails.org/
 [redis]: http://redis.io/
+
+## Usage
+
+Add `recipe[dev]` to your run list.
+
+### Role example
+
+```json
+{
+  "name": "dev",
+  "description": "A role for development machines",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "run_list": [
+    "recipe[dev]"
+  ]
+}
+```
 
 ## Attributes
 
