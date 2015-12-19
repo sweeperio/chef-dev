@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe "dev::default" do
-  APPS = %w(hub vim zsh)
+  APPS = %w(git hub vim zsh)
 
   APPS.each do |app|
     describe command("which #{app}") do
@@ -11,6 +11,10 @@ describe "dev::default" do
 
   describe command("grep \"^vagrant\" /etc/passwd | cut -d ':' -f 7") do
     its(:stdout) { should eq("/usr/bin/zsh\n") }
+  end
+
+  describe command("git version") do
+    its(:stdout) { should contain("git version 2.4.4") }
   end
 
   describe command("vim --version") do
