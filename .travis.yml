@@ -1,0 +1,9 @@
+---
+language: ruby
+
+before_install:
+  - bundle install --gemfile=./travis/Gemfile
+
+script:
+  - bundle exec rubocop
+  - bundle exec rspec
