@@ -9,6 +9,7 @@ include_recipe "build-essential"
 include_recipe "memcached"
 include_recipe "redisio"
 include_recipe "redisio::enable"
+include_recipe "tmux"
 
 node["dev"]["packages"].each { |pkg| package pkg }
 

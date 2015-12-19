@@ -10,7 +10,7 @@ Attribute|Description|Default
 `node["dev"]["packages"]` | The set of apt packages to install | `%w(curl silversearcher-ag)`
 `node["dev"]["vagrant_shell"]` | The default shell for the vagrant user | `bash`
 
-## Default Chruby Settings
+### Default Chruby Settings
 
 See [chruby cookbook] for options.
 
@@ -22,7 +22,7 @@ Attribute|Description|Default
 
 [chruby cookbook]: https://github.com/Atalanta/chef-chruby
 
-## Default Memcached Settings
+### Default Memcached Settings
 
 See [memcached cookbook] for options.
 
@@ -31,6 +31,16 @@ Attribute|Description|Default
 `node["memcached"]["listen"]` | The address to listen on | `127.0.0.1`
 
 [memcached cookbook]: https://github.com/chef-cookbooks/memcached
+
+### Default Tmux Settings
+
+See [tmux cookbook] for options
+
+Attribute|Description|Default
+---------|-----------|-------
+`node["tmux"]["install_method"]` | How to install tmux | `source`
+
+[tmux cookbook]: https://github.com/stevendanna/tmux
 
 ## Doing Things
 

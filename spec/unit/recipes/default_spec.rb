@@ -19,6 +19,7 @@ describe "dev::default" do
     memcached
     redisio
     redisio::enable
+    tmux
   )
 
   cached(:chef_run) do
