@@ -44,6 +44,17 @@ Attribute|Description|Default
 
 [nodejs cookbook]: https://github.com/redguide/nodejs
 
+### Default Sudo Settings
+
+See [sudo cookbook] for options.
+
+Attribute|Description|Default
+---------|-----------|-------
+`node["authorization"]["sudo"]["groups"]` | Groups to enable sudo access for | `%w(sudoers)`
+`node["authorization"]["sudo"]["passwordless"]` | Whether or not to require passwords for sudo | `false`
+
+[sudo cookbook]: https://github.com/chef-cookbooks/sudo
+
 ### Default Tmux Settings
 
 See [tmux cookbook] for options

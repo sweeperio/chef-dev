@@ -23,6 +23,7 @@ describe "dev::default" do
     phantomjs
     redisio
     redisio::enable
+    sudo
     tmux
   )
 
@@ -34,6 +35,10 @@ describe "dev::default" do
 
     stub_git_version
     runner.converge(described_recipe)
+  end
+
+  it "creates the sudoers group and adds vagrant to it" do
+    expect(chef_run).to create_group("sudoers").with(members: %w(vagrant))
   end
 
   it "installs apt packages" do

@@ -4,6 +4,10 @@
 #
 # Copyright (c) 2015 Sweeper Devs, All Rights Reserved.
 
+group "sudoers" do
+  members %w(vagrant)
+end
+
 include_recipe "apt"
 include_recipe "build-essential"
 include_recipe "fasd"
@@ -12,6 +16,7 @@ include_recipe "nodejs"
 include_recipe "phantomjs"
 include_recipe "redisio"
 include_recipe "redisio::enable"
+include_recipe "sudo"
 include_recipe "tmux"
 
 node["dev"]["packages"].each { |pkg| package pkg }

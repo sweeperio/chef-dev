@@ -1,7 +1,11 @@
 require "spec_helper"
 
 describe "dev::default" do
-  APPS     = %w(coffee curl fasd git grunt hub memcached node npm phantomjs redis-server redis-cli tmux vim zsh).freeze
+  APPS = %w(
+    coffee curl fasd git grunt hub memcached node npm phantomjs redis-server redis-cli
+    sudo tmux vim zsh
+  ).freeze
+
   SERVICES = %w(memcached nginx redis6379).freeze
 
   CHRUBY_FILES = %w(
@@ -61,6 +65,17 @@ describe "dev::default" do
 
     describe command("luajit -v") do
       its(:stdout) { should match(/^LuaJIT 2\.1\.0/) }
+    end
+  end
+
+  context "sudo" do
+    describe group("sudoers") do
+      it { should exist }
+    end
+
+    describe user("vagrant") do
+      it { should exist }
+      it { should belong_to_group("sudoers") }
     end
   end
 
