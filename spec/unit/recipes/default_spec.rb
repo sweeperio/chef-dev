@@ -16,6 +16,7 @@ describe "dev::default" do
     dev::nginx
     dev::vim
     dev::zsh
+    fasd
     memcached
     nodejs
     phantomjs

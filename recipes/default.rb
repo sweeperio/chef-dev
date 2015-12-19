@@ -6,6 +6,7 @@
 
 include_recipe "apt"
 include_recipe "build-essential"
+include_recipe "fasd"
 include_recipe "memcached"
 include_recipe "nodejs"
 include_recipe "phantomjs"
