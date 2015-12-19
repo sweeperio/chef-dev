@@ -2,6 +2,41 @@
 
 A cookbook for setting up and configuring dev machines.
 
+## What Does it Do?
+
+* Adds a `sudoers` group (with sudo access) and adds `vagrant` to it
+* Installs a few apt packages, including build-essential (see attributes)
+* Installs ruby `2.1.7` and `2.2.3` (defaulted to `2.2.3` with chruby)
+* Installs gems defined in `node["dev"]["gems"]` for all installed ruby versions (see attributes)
+* **If postgresql is installed**, creates a user account for vagrant
+
+### Applications
+
+* [chruby] - default set to `2.2.3` with auto switch enabled
+* [fasd]
+* [node] - with coffee-script and grunt-cli installed globally
+* [phantomjs]
+* [vim] - Compiled from source with ruby and python support
+* [tmux]
+
+[chruby]: https://github.com/postmodern/chruby
+[fasd]: https://github.com/clvv/fasd
+[node]: https://nodejs.org/
+[phantomjs]: http://phantomjs.org/
+[vim]: http://www.vim.org/
+[tmux]: https://tmux.github.io/
+
+### Services
+
+* [memcached] - configured to listen on `127.0.0.1` only
+* [nginx] - open resty with a default server listening on port `80` (proxy passes to `localhost:3000` because [Rails])
+* [redis] - on the default port (also installs `redis-cli`)
+
+[memcached]: http://memcached.org/
+[nginx]: https://openresty.org/
+[Rails]: http://rubyonrails.org/
+[redis]: http://redis.io/
+
 ## Attributes
 
 Attribute|Description|Default
@@ -65,15 +100,22 @@ Attribute|Description|Default
 
 [tmux cookbook]: https://github.com/stevendanna/tmux
 
-## Doing Things
+## Contributing
 
-To do any of these things, you'll need [ChefDK] and [Vagrant] installed.
+To do any of the things, you'll need [ChefDK] and [Vagrant] installed.
 
 * Lint: `chef exec rubocop`
 * Run Specs: `chef exec rspec`
 * Run Integration Tests: `chef exec kitchen test` (will destroy and recreate box)
 
 It's faster to run `chef exec kitchen converge && chef exec kitchen verify` while developing. Just make sure to run test
+
+### The Rest, You Already Know
+
+1. Fork this repo and create a branch
+1. Add tests that will fail without your code, and pass with it
+1. Use Chef idioms and helpers
+1. Push your branch and submit a pull request
 on a clean box before pushing.
 
 [ChefDK]: https://downloads.chef.io/chef-dk/
