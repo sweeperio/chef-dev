@@ -17,6 +17,8 @@ describe "dev::default" do
     dev::vim
     dev::zsh
     memcached
+    nodejs
+    phantomjs
     redisio
     redisio::enable
     tmux
@@ -24,15 +26,20 @@ describe "dev::default" do
 
   cached(:chef_run) do
     runner = ChefSpec::ServerRunner.new do |node|
-      node.set["dev"]["packages"] = %w(curl)
+      node.set["dev"]["packages"]        = %w(curl)
+      node.set["nodejs"]["npm_packages"] = [{ name: "coffee-script" }]
     end
 
     stub_git_version
     runner.converge(described_recipe)
   end
 
-  it "installs packages" do
+  it "installs apt packages" do
     expect(chef_run).to install_package("curl")
+  end
+
+  it "installs npm packages" do
+    expect(chef_run).to install_nodejs_npm("coffee-script")
   end
 
   it "includes recipes" do

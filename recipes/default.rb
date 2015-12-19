@@ -7,6 +7,8 @@
 include_recipe "apt"
 include_recipe "build-essential"
 include_recipe "memcached"
+include_recipe "nodejs"
+include_recipe "phantomjs"
 include_recipe "redisio"
 include_recipe "redisio::enable"
 include_recipe "tmux"

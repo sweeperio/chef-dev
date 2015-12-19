@@ -32,6 +32,16 @@ Attribute|Description|Default
 
 [memcached cookbook]: https://github.com/chef-cookbooks/memcached
 
+### Default Nodejs Settings
+
+See [nodejs cookbook] for options.
+
+Attribute|Description|Default
+---------|-----------|-------
+`node["nodejs"]["npm_packages"]` | Global npm packages to be installed | `coffee-script and grunt-cli`
+
+[nodejs cookbook]: https://github.com/redguide/nodejs
+
 ### Default Tmux Settings
 
 See [tmux cookbook] for options
