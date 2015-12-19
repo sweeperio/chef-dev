@@ -6,12 +6,12 @@
 
 include_recipe "apt"
 include_recipe "build-essential"
-include_recipe "dev::chruby"
-include_recipe "dev::git"
-include_recipe "dev::hub"
-include_recipe "dev::nginx"
-include_recipe "dev::vim"
-include_recipe "dev::zsh"
+include_recipe "redisio"
+include_recipe "redisio::enable"
+
+%w(chruby git hub nginx vim zsh).each do |recipe|
+  include_recipe "dev::#{recipe}"
+end
 
 execute "set default shell" do
   command "chsh -s $(which #{node['dev']['vagrant_shell']}) vagrant"

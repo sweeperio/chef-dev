@@ -7,7 +7,18 @@
 require "spec_helper"
 
 describe "dev::default" do
-  INCLUDED_RECIPES = %w(apt build-essential dev::chruby dev::git dev::hub dev::nginx dev::vim dev::zsh)
+  INCLUDED_RECIPES = %w(
+    apt
+    build-essential
+    dev::chruby
+    dev::git
+    dev::hub
+    dev::nginx
+    dev::vim
+    dev::zsh
+    redisio
+    redisio::enable
+  )
 
   cached(:chef_run) do
     runner = ChefSpec::ServerRunner.new
