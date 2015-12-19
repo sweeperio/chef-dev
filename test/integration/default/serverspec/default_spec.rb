@@ -2,6 +2,7 @@ require "spec_helper"
 
 describe "dev::default" do
   APPS = %w(git hub vim zsh).freeze
+  SERVICES = %w(nginx).freeze
 
   CHRUBY_FILES = %w(
     /etc/profile.d/chruby.sh
@@ -12,6 +13,13 @@ describe "dev::default" do
   APPS.each do |app|
     describe command("which #{app}") do
       its(:stdout) { should_not eq("") }
+    end
+  end
+
+  SERVICES.each do |service|
+    describe service(service) do
+      it { should be_enabled }
+      it { should be_running }
     end
   end
 
@@ -39,6 +47,20 @@ describe "dev::default" do
       describe command("gem list") do
         its(:stdout) { should contain(gem) }
       end
+    end
+  end
+
+  context "open resty/nginx" do
+    describe file("/etc/nginx/sites-available/dev-rails-nginx.conf") do
+      it { should exist }
+    end
+
+    describe file("/etc/nginx/sites-enabled/dev-rails-nginx.conf") do
+      it { should exist }
+    end
+
+    describe command("luajit -v") do
+      its(:stdout) { should match(/^LuaJIT 2\.1\.0/) }
     end
   end
 
