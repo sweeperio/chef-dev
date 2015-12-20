@@ -5,12 +5,14 @@ A cookbook for setting up and configuring dev machines.
 
 ## What Does it Do?
 
-* Adds a `sudoers` group (with sudo access) and adds `vagrant` to it
+* Adds `vagrant` user to the `sudoers` group (defined in [chef-base])
 * Installs a few apt packages, including build-essential (see attributes)
 * Installs ruby `2.1.7` and `2.2.3` (defaulted to `2.2.3` with chruby)
 * Installs gems defined in `node["dev"]["gems"]` for all installed ruby versions (see attributes)
 * **If postgresql is installed**, creates a user account for vagrant
 * Sets the default shell for the `vagrant` user (see attributes)
+
+[chef base]: https://github.com/sweeperio/chef-base
 
 ### Applications
 
@@ -100,17 +102,6 @@ Attribute|Description|Default
 `node["nodejs"]["npm_packages"]` | Global npm packages to be installed | `coffee-script and grunt-cli`
 
 [nodejs cookbook]: https://github.com/redguide/nodejs
-
-### Default Sudo Settings
-
-See [sudo cookbook] for options.
-
-Attribute|Description|Default
----------|-----------|-------
-`node["authorization"]["sudo"]["groups"]` | Groups to enable sudo access for | `%w(sudoers)`
-`node["authorization"]["sudo"]["passwordless"]` | Whether or not to require passwords for sudo | `false`
-
-[sudo cookbook]: https://github.com/chef-cookbooks/sudo
 
 ### Default Tmux Settings
 

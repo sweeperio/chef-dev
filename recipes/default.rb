@@ -16,7 +16,6 @@ include_recipe "nodejs"
 include_recipe "phantomjs"
 include_recipe "redisio"
 include_recipe "redisio::enable"
-include_recipe "sudo"
 include_recipe "tmux"
 
 node["dev"]["packages"].each { |pkg| package pkg }

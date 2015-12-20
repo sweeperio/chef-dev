@@ -22,7 +22,6 @@ describe "dev::default" do
     phantomjs
     redisio
     redisio::enable
-    sudo
     tmux
   )
 
@@ -34,7 +33,6 @@ describe "dev::default" do
 
     stub_command("dpkg -s memcached")
     stub_command("getent passwd memcache")
-    stub_command("which sudo")
 
     runner.converge(described_recipe)
   end

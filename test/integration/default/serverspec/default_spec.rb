@@ -3,7 +3,7 @@ require "spec_helper"
 describe "dev::default" do
   APPS = %w(
     coffee curl fasd grunt hub memcached node npm phantomjs redis-server redis-cli
-    sudo tmux vim zsh
+    tmux vim zsh
   ).freeze
 
   SERVICES = %w(memcached nginx redis6379).freeze
