@@ -71,6 +71,16 @@ Attribute|Description|Default
 `node["dev"]["packages"]` | The set of apt packages to install | `%w(curl silversearcher-ag)`
 `node["dev"]["vagrant_shell"]` | The default shell for the vagrant user | `bash`
 
+### Default Base Settings
+
+See [base cookbook] for options.
+
+Attribute|Description|Default
+---------|-----------|-------
+`node["base"]["packages"]` | The set of apt packages to install | `%w(curl silversearcher-ag)`
+
+[base cookbook]: https://github.com/sweeperio/chef-base
+
 ### Default Chruby Settings
 
 See [chruby cookbook] for options.

@@ -8,9 +8,7 @@ long_description  "Installs/Configures dev"
 version           "0.1.0"
 # rubocop:enable Style/SingleSpaceBeforeFirstArg
 
-depends "apt"
 depends "ark"
-depends "build-essential"
 depends "chruby"
 depends "fasd"
 depends "memcached"

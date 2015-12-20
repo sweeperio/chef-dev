@@ -8,8 +8,6 @@ group "sudoers" do
   members %w(vagrant)
 end
 
-include_recipe "apt"
-include_recipe "build-essential"
 include_recipe "fasd"
 include_recipe "memcached"
 include_recipe "nodejs"
@@ -17,8 +15,6 @@ include_recipe "phantomjs"
 include_recipe "redisio"
 include_recipe "redisio::enable"
 include_recipe "tmux"
-
-node["dev"]["packages"].each { |pkg| package pkg }
 
 %w(chruby database hub nginx vim zsh).each do |recipe|
   include_recipe "dev::#{recipe}"

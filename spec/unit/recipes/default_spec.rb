@@ -8,8 +8,6 @@ require "spec_helper"
 
 describe "dev::default" do
   INCLUDED_RECIPES = %w(
-    apt
-    build-essential
     dev::chruby
     dev::database
     dev::hub
@@ -27,7 +25,6 @@ describe "dev::default" do
 
   cached(:chef_run) do
     runner = ChefSpec::ServerRunner.new do |node|
-      node.set["dev"]["packages"]        = %w(curl)
       node.set["nodejs"]["npm_packages"] = [{ name: "coffee-script" }]
     end
 
@@ -39,10 +36,6 @@ describe "dev::default" do
 
   it "creates the sudoers group and adds vagrant to it" do
     expect(chef_run).to create_group("sudoers").with(members: %w(vagrant))
-  end
-
-  it "installs apt packages" do
-    expect(chef_run).to install_package("curl")
   end
 
   it "installs npm packages" do
