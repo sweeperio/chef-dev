@@ -14,7 +14,6 @@ describe "dev::chruby" do
       node.set["dev"]["gems"] = INSTALLED_GEMS
     end
 
-    stub_git_version
     runner.converge(described_recipe)
   end
 

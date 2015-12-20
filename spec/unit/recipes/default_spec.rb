@@ -12,7 +12,6 @@ describe "dev::default" do
     build-essential
     dev::chruby
     dev::database
-    dev::git
     dev::hub
     dev::nginx
     dev::vim
@@ -33,7 +32,10 @@ describe "dev::default" do
       node.set["nodejs"]["npm_packages"] = [{ name: "coffee-script" }]
     end
 
-    stub_git_version
+    stub_command("dpkg -s memcached")
+    stub_command("getent passwd memcache")
+    stub_command("which sudo")
+
     runner.converge(described_recipe)
   end
 

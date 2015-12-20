@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe "dev::default" do
   APPS = %w(
-    coffee curl fasd git grunt hub memcached node npm phantomjs redis-server redis-cli
+    coffee curl fasd grunt hub memcached node npm phantomjs redis-server redis-cli
     sudo tmux vim zsh
   ).freeze
 
@@ -29,10 +29,6 @@ describe "dev::default" do
 
   describe command("grep \"^vagrant\" /etc/passwd | cut -d ':' -f 7") do
     its(:stdout) { should eq("/usr/bin/zsh\n") }
-  end
-
-  describe command("git version") do
-    its(:stdout) { should contain("git version 2.4.4") }
   end
 
   describe command("vim --version") do
