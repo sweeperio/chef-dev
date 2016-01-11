@@ -6,23 +6,20 @@ Install/configure swpr_dev
 
 ## What This Does
 
-* Thing 1
-* Thing 2
-
-* Add the cookbook description here.
-* Add status badge once travis is setup
+* Installs zsh
+* Sets the default shell for vagrant user (see attributes)
 
 ## Attributes
 
 | attribute | description | default |
 |-----------|-------------|---------|
-| `node["swpr_dev"]["value"]` | some description | `""` |
+| `node["swpr_dev"]["vagrant_shell"]` | the default shell for the vagrant user | `base` |
 
 ## Recipes
 
 ### swpr_dev::default
 
-TODO: description
+The main recipe. This does all the things
 
 **Usage:** add `recipe[swpr_dev]` to your run list.
 

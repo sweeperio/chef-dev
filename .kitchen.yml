@@ -15,3 +15,5 @@ suites:
     run_list:
       - recipe[swpr_dev]
     attributes:
+      swpr_dev:
+        vagrant_shell: zsh
