@@ -25,7 +25,7 @@
 # THE SOFTWARE.
 
 describe "swpr_dev::default" do
-  RECIPES = %w(_shell _tmux)
+  RECIPES = %w(_shell _tmux _vim)
 
   cached(:chef_run) do
     runner = ChefSpec::SoloRunner.new

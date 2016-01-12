@@ -13,6 +13,17 @@ describe "swpr_dev" do
     end
   end
 
+  context "vim" do
+    describe command("which vim") do
+      its(:exit_status) { should eq(0) }
+    end
+
+    describe command("vim --version") do
+      its(:stdout) { should contain("Vi IMproved 7.4") }
+      its(:stdout) { should match(/\+ruby/) }
+    end
+  end
+
   context "zsh" do
     describe package("zsh") do
       it { should be_installed }

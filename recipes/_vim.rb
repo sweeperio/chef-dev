@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: swpr_dev
-# Recipe:: default
+# Recipe:: _vim
 #
 # The MIT License (MIT)
 #
@@ -24,6 +24,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-include_recipe "swpr_dev::_shell"
-include_recipe "swpr_dev::_tmux"
-include_recipe "swpr_dev::_vim"
+version    = node.attr!("swpr_dev", "vim", "version")
+source_url = "https://github.com/b4winckler/vim/archive/v#{version}.tar.gz"
+
+ark "vim" do
+  url source_url
+  version version
+  autoconf_opts node.attr!("swpr_dev", "vim", "autoconf_opts")
+  action :install_with_make
+end

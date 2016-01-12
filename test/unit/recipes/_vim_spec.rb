@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: swpr_dev
-# Recipe:: default
+# Spec:: _vim
 #
 # The MIT License (MIT)
 #
@@ -24,6 +24,25 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-include_recipe "swpr_dev::_shell"
-include_recipe "swpr_dev::_tmux"
-include_recipe "swpr_dev::_vim"
+describe "swpr_dev::_vim" do
+  cached(:chef_run) do
+    runner = ChefSpec::SoloRunner.new do |node|
+      node.set["swpr_dev"]["vim"]["version"]       = "7-4-658"
+      node.set["swpr_dev"]["vim"]["autoconf_opts"] = %w(--enable-pythoninterp)
+    end
+
+    runner.converge(described_recipe)
+  end
+
+  it "converges successfully" do
+    expect { chef_run }.to_not raise_error
+  end
+
+  it "arks and installs vim with make" do
+    expect(chef_run).to install_with_make_ark("vim").with(
+      url: "https://github.com/b4winckler/vim/archive/v7-4-658.tar.gz",
+      version: "7-4-658",
+      autoconf_opts: chef_run.node.attr!("swpr_dev", "vim", "autoconf_opts")
+    )
+  end
+end
