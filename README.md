@@ -6,6 +6,8 @@ Install/configure swpr_dev
 
 ## What This Does
 
+* Makes and installs tmux from source (see attributes)
+* Makes and installs vim from source (see attributes)
 * Installs zsh
 * Sets the default shell for vagrant user (see attributes)
 
@@ -13,6 +15,10 @@ Install/configure swpr_dev
 
 | attribute | description | default |
 |-----------|-------------|---------|
+| `node["swpr_dev"]["tmux"]["version"]` | the version of tmux to install | `2.1` |
+| `node["swpr_dev"]["vim"]["autoconf_opts"]` | params for the ./configure call for vim | `%w(--enable-pythoninterp
+--enable-rubyinterp)` |
+| `node["swpr_dev"]["vim"]["version"]` | the version of vim to install | `7-4-658` |
 | `node["swpr_dev"]["vagrant_shell"]` | the default shell for the vagrant user | `base` |
 
 ## Recipes
