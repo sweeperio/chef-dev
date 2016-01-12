@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: swpr_dev
-# Recipe:: default
+# Recipe:: _tmux
 #
 # The MIT License (MIT)
 #
@@ -24,5 +24,20 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-include_recipe "swpr_dev::_shell"
-include_recipe "swpr_dev::_tmux"
+version    = node.attr!("swpr_dev", "tmux", "version")
+source_url = "https://github.com/tmux/tmux/releases/download/#{version}/tmux-#{version}.tar.gz"
+
+%w(libevent-dev libncurses5-dev gcc make).each(&method(:package))
+
+ark "tmux" do
+  url source_url
+  version version
+  action :install_with_make
+end
+
+cookbook_file "/etc/tmux.conf" do
+  source "tmux.conf"
+  owner "root"
+  group "root"
+  mode 00644
+end

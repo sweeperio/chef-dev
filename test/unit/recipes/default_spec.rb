@@ -25,6 +25,8 @@
 # THE SOFTWARE.
 
 describe "swpr_dev::default" do
+  RECIPES = %w(_shell _tmux)
+
   cached(:chef_run) do
     runner = ChefSpec::SoloRunner.new
     runner.converge(described_recipe)
@@ -34,7 +36,9 @@ describe "swpr_dev::default" do
     expect { chef_run }.to_not raise_error
   end
 
-  it "includes the shell recipe" do
-    expect(chef_run).to include_recipe("swpr_dev::shell")
+  RECIPES.each do |recipe|
+    it "includes the #{recipe} recipe" do
+      expect(chef_run).to include_recipe("swpr_dev::#{recipe}")
+    end
   end
 end

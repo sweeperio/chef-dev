@@ -1,6 +1,18 @@
 require "spec_helper"
 
 describe "swpr_dev" do
+  context "tmux" do
+    describe command("which tmux") do
+      its(:exit_status) { should eq(0) }
+    end
+
+    describe file("/etc/tmux.conf") do
+      it { should exist }
+      it { should be_file }
+      it { should be_mode("644") }
+    end
+  end
+
   context "zsh" do
     describe package("zsh") do
       it { should be_installed }

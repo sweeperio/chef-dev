@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: swpr_dev
-# Spec:: shell
+# Recipe:: _shell
 #
 # The MIT License (MIT)
 #
@@ -24,30 +24,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-describe "swpr_dev::shell" do
-  cached(:chef_run) do
-    runner = ChefSpec::SoloRunner.new do |node|
-      node.set["swpr_dev"]["vagrant_shell"] = "zsh"
-    end
+package "zsh"
 
-    runner.converge(described_recipe)
-  end
+cookbook_file("/etc/zsh/zshenv") { source "zshenv" }
 
-  it "converges successfully" do
-    expect { chef_run }.to_not raise_error
-  end
-
-  it "installs zsh" do
-    expect(chef_run).to install_package("zsh")
-  end
-
-  it "creates the default zshenv file" do
-    expect(chef_run).to create_cookbook_file("/etc/zsh/zshenv").with(source: "zshenv")
-  end
-
-  it "sets the default shell for vagrant" do
-    expect(chef_run).to run_execute("set vagrant shell").with(
-      command: "chsh -s $(which zsh) vagrant"
-    )
-  end
+execute "set vagrant shell" do
+  command "chsh -s $(which #{node.attr!('swpr_dev', 'vagrant_shell')}) vagrant"
 end

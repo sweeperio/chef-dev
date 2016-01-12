@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: swpr_dev
-# Recipe:: default
+# Spec:: _tmux
 #
 # The MIT License (MIT)
 #
@@ -24,5 +24,32 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-include_recipe "swpr_dev::_shell"
-include_recipe "swpr_dev::_tmux"
+describe "swpr_dev::_tmux" do
+  cached(:chef_run) do
+    runner = ChefSpec::SoloRunner.new do |node|
+      node.set["swpr_dev"]["tmux"]["version"] = "2.1"
+    end
+
+    runner.converge(described_recipe)
+  end
+
+  it "converges successfully" do
+    expect { chef_run }.to_not raise_error
+  end
+
+  it "arks and installs tmux with make" do
+    expect(chef_run).to install_with_make_ark("tmux").with(
+      url: "https://github.com/tmux/tmux/releases/download/2.1/tmux-2.1.tar.gz",
+      version: chef_run.node.attr!("swpr_dev", "tmux", "version")
+    )
+  end
+
+  it "creates a base config file" do
+    expect(chef_run).to create_cookbook_file("/etc/tmux.conf").with(
+      source: "tmux.conf",
+      owner: "root",
+      group: "root",
+      mode: 00644
+    )
+  end
+end
