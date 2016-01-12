@@ -1,6 +1,29 @@
 require "spec_helper"
 
 describe "swpr_dev" do
+  context "open resty" do
+    describe file("/etc/nginx/sites-available/dev-rails-nginx.conf") do
+      it { should exist }
+      it { should be_file }
+    end
+
+    describe file("/etc/nginx/sites-enabled/dev-rails-nginx.conf") do
+      it { should exist }
+      it { should be_file }
+      it { should be_symlink }
+      it { should be_linked_to("/etc/nginx/sites-available/dev-rails-nginx.conf") }
+    end
+
+    describe command("which luajit") do
+      its(:exit_status) { should eq(0) }
+      its(:stdout) { should eq("/usr/local/bin/luajit\n") }
+    end
+
+    describe command("luajit -v") do
+      its(:stdout) { should contain("LuaJIT 2.1.0") }
+    end
+  end
+
   context "tmux" do
     describe command("which tmux") do
       its(:exit_status) { should eq(0) }

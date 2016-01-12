@@ -24,6 +24,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+include_recipe "swpr_dev::_nginx"
 include_recipe "swpr_dev::_shell"
 include_recipe "swpr_dev::_tmux"
 include_recipe "swpr_dev::_vim"

@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: swpr_dev
-# Spec:: default
+# Spec:: _nginx
 #
 # The MIT License (MIT)
 #
@@ -24,9 +24,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-describe "swpr_dev::default" do
-  RECIPES = %w(_nginx _shell _tmux _vim)
-
+describe "swpr_dev::_nginx" do
   cached(:chef_run) do
     runner = ChefSpec::SoloRunner.new
     runner.converge(described_recipe)
@@ -36,9 +34,18 @@ describe "swpr_dev::default" do
     expect { chef_run }.to_not raise_error
   end
 
-  RECIPES.each do |recipe|
-    it "includes the #{recipe} recipe" do
-      expect(chef_run).to include_recipe("swpr_dev::#{recipe}")
-    end
+  it "includes the open_resty recipe" do
+    expect(chef_run).to include_recipe("open_resty")
+  end
+
+  it "creates and enables the dev nginx conf for rails apps" do
+    expect(chef_run).to create_nginx_site("dev-rails-nginx.conf.erb")
+    expect(chef_run).to enable_nginx_site("dev-rails-nginx.conf.erb")
+  end
+
+  it "links luajit to usr/local/bin" do
+    expect(chef_run).to create_link("/usr/local/bin/luajit").with(
+      to: "/usr/local/openresty/luajit/bin/luajit-2.1.0-beta1"
+    )
   end
 end

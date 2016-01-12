@@ -6,6 +6,7 @@ Install/configure swpr_dev
 
 ## What This Does
 
+* Installs nginx with open resty and a default config for rails apps (upstream for localhost:3000)
 * Makes and installs tmux from source (see attributes)
 * Makes and installs vim from source (see attributes)
 * Installs zsh
