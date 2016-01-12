@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: swpr_dev
-# Recipe:: default
+# Recipe:: _hub
 #
 # The MIT License (MIT)
 #
@@ -24,8 +24,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-include_recipe "swpr_dev::_hub"
-include_recipe "swpr_dev::_nginx"
-include_recipe "swpr_dev::_shell"
-include_recipe "swpr_dev::_tmux"
-include_recipe "swpr_dev::_vim"
+repo       = "https://github.com/github/hub"
+version    = node.attr!("swpr_dev", "hub", "version")
+source_url = "#{repo}/releases/download/v#{version}/hub-linux-amd64-#{version}.tgz"
+
+ark "hub" do
+  url source_url
+  action :cherry_pick
+  version version
+  path "/usr/local"
+  creates "hub-linux-amd64-#{version}/bin/hub"
+end

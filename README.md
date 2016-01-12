@@ -6,16 +6,20 @@ Install/configure swpr_dev
 
 ## What This Does
 
+* Installs [hub] for the greater good
 * Installs nginx with open resty and a default config for rails apps (upstream for localhost:3000)
 * Makes and installs tmux from source (see attributes)
 * Makes and installs vim from source (see attributes)
 * Installs zsh
 * Sets the default shell for vagrant user (see attributes)
 
+[hub]: https://github.com/github/hub
+
 ## Attributes
 
 | attribute | description | default |
 |-----------|-------------|---------|
+| `node["swpr_dev"]["hub"]["version"]` | the version of hub to install | `2.2.2` |
 | `node["swpr_dev"]["tmux"]["version"]` | the version of tmux to install | `2.1` |
 | `node["swpr_dev"]["vim"]["autoconf_opts"]` | params for the ./configure call for vim | `%w(--enable-pythoninterp
 --enable-rubyinterp)` |

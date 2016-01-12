@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: swpr_dev
-# Recipe:: default
+# Spec:: _hub
 #
 # The MIT License (MIT)
 #
@@ -24,8 +24,23 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-include_recipe "swpr_dev::_hub"
-include_recipe "swpr_dev::_nginx"
-include_recipe "swpr_dev::_shell"
-include_recipe "swpr_dev::_tmux"
-include_recipe "swpr_dev::_vim"
+describe "swpr_dev::_hub" do
+  cached(:chef_run) do
+    runner = ChefSpec::SoloRunner.new do |node|
+      node.set["swpr_dev"]["hub"]["version"] = "2.2.2"
+    end
+
+    runner.converge(described_recipe)
+  end
+
+  it "converges successfully" do
+    expect { chef_run }.to_not raise_error
+  end
+
+  it "arks and cherry picks hub" do
+    expect(chef_run).to cherry_pick_ark("hub").with(
+      path: "/usr/local",
+      creates: "hub-linux-amd64-2.2.2/bin/hub"
+    )
+  end
+end

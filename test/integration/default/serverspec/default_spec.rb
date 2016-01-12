@@ -1,6 +1,12 @@
 require "spec_helper"
 
 describe "swpr_dev" do
+  context "hub" do
+    describe command("which hub") do
+      its(:exit_status) { should eq(0) }
+    end
+  end
+
   context "open resty" do
     describe file("/etc/nginx/sites-available/dev-rails-nginx.conf") do
       it { should exist }
