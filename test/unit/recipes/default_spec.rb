@@ -25,7 +25,7 @@
 # THE SOFTWARE.
 
 describe "swpr_dev::default" do
-  RECIPES = %w(_hub _nginx _shell _tmux _vim)
+  PRIVATE_RECIPES = %w(_hub _nginx _shell _tmux _vim)
 
   cached(:chef_run) do
     runner = ChefSpec::SoloRunner.new
@@ -36,9 +36,13 @@ describe "swpr_dev::default" do
     expect { chef_run }.to_not raise_error
   end
 
-  RECIPES.each do |recipe|
+  PRIVATE_RECIPES.each do |recipe|
     it "includes the #{recipe} recipe" do
       expect(chef_run).to include_recipe("swpr_dev::#{recipe}")
     end
+  end
+
+  it "includes the fasd recipe" do
+    expect(chef_run).to include_recipe("fasd")
   end
 end

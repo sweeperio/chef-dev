@@ -29,3 +29,5 @@ include_recipe "swpr_dev::_nginx"
 include_recipe "swpr_dev::_shell"
 include_recipe "swpr_dev::_tmux"
 include_recipe "swpr_dev::_vim"
+
+include_recipe "fasd"

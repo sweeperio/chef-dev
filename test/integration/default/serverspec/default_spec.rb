@@ -1,6 +1,12 @@
 require "spec_helper"
 
 describe "swpr_dev" do
+  context "fasd" do
+    describe command("which fasd") do
+      its(:exit_status) { should eq(0) }
+    end
+  end
+
   context "hub" do
     describe command("which hub") do
       its(:exit_status) { should eq(0) }
