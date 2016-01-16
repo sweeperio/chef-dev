@@ -12,6 +12,7 @@ Install/configure swpr_dev
 * Makes and installs vim from source (see attributes)
 * Installs zsh
 * Sets the default shell for vagrant user (see attributes)
+* Installs postgresql 9.3 (if the postgresql recipe is included)
 
 [hub]: https://github.com/github/hub
 
@@ -33,6 +34,20 @@ Install/configure swpr_dev
 The main recipe. This does all the things
 
 **Usage:** add `recipe[swpr_dev]` to your run list.
+
+### swpr_dev::postgresql
+
+Installs postgres and sets up some good defaults for dev.
+
+**Usage:** add `recipe[swpr_dev::postgresql]` to your run list.
+
+#### Overridden Attributes
+
+| attribute | default |
+|-----------|---------|
+| `node["postgresql"]["config"]["listen_addresses"]` | `*` |
+| `node["postgresql"]["password"]["postgress"]` | `aad1493719f8846f0360e5dbc7654ac5` |
+| `node["postgresql"]["pg_hba"]` | Updated to allow remote connections from `192.168.0.0/16`
 
 ## License
 

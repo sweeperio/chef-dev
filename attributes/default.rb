@@ -1,5 +1,8 @@
 default["swpr_dev"]["hub"]["version"] = "2.2.2"
 
+default["swpr_dev"]["db"]["user"]     = "vagrant"
+default["swpr_dev"]["db"]["password"] = "developerPassword1"
+
 default["swpr_dev"]["tmux"]["version"] = "2.1"
 
 default["swpr_dev"]["vagrant_shell"]   = "bash"

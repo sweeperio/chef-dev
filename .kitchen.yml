@@ -14,6 +14,7 @@ suites:
   - name: default
     run_list:
       - recipe[swpr_dev]
+      - recipe[swpr_dev::postgresql]
     attributes:
       swpr_dev:
         vagrant_shell: zsh
