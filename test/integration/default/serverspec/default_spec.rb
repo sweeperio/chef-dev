@@ -7,6 +7,13 @@ describe "swpr_dev" do
     end
   end
 
+  context "heroku toolbelt" do
+    describe command("which heroku") do
+      its(:exit_status) { should eq(0) }
+      its(:stdout) { should eq("/usr/bin/heroku\n") }
+    end
+  end
+
   context "hub" do
     describe command("which hub") do
       its(:exit_status) { should eq(0) }

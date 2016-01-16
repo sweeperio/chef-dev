@@ -34,3 +34,7 @@ include_recipe "fasd"
 include_recipe "memcached"
 include_recipe "redisio"
 include_recipe "redisio::enable"
+
+swpr_dev_remote_script "heroku_toolbelt" do
+  url "https://toolbelt.heroku.com/install-ubuntu.sh"
+end

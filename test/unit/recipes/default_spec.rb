@@ -27,11 +27,6 @@
 describe "swpr_dev::default" do
   PRIVATE_RECIPES = %w(_hub _nginx _shell _tmux _vim)
 
-  before do
-    stub_command("dpkg -s memcached")
-    stub_command("getent passwd memcache")
-  end
-
   cached(:chef_run) do
     runner = ChefSpec::SoloRunner.new
     runner.converge(described_recipe)
@@ -58,5 +53,11 @@ describe "swpr_dev::default" do
   it "includes the redisio recipes" do
     expect(chef_run).to include_recipe("redisio")
     expect(chef_run).to include_recipe("redisio::enable")
+  end
+
+  it "installs the Heroku toolbelt" do
+    expect(chef_run).to install_remote_script("heroku_toolbelt").with(
+      url: "https://toolbelt.heroku.com/install-ubuntu.sh"
+    )
   end
 end

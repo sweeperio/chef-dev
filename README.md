@@ -15,6 +15,7 @@ Install/configure swpr_dev
 * Installs memcached
 * Installs redis
 * Installs postgresql 9.3 (if the postgresql recipe is included)
+* Installs the Heroku toolbelt
 
 [hub]: https://github.com/github/hub
 

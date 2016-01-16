@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: swpr_dev
-# Spec:: db_user
+# Spec:: remote_script
 #
 # The MIT License (MIT)
 #
@@ -24,34 +24,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-describe "swpr_dev::postgresql" do
-  before do
-    stub_command(/ls \/.*\/recovery.conf/).and_return(false)
-  end
+describe "swpr_dev::default" do
+  let(:cache_path) { Chef::Config[:file_cache_path] }
 
   let(:chef_run) do
-    runner = ChefSpec::SoloRunner.new(step_into: %w(swpr_dev_db_user)) do |node|
-      node.set["swpr_dev"]["db"]["user"]     = "vagrant"
-      node.set["swpr_dev"]["db"]["password"] = "developerPassword1"
-    end
-
+    runner = ChefSpec::SoloRunner.new(file_cache_path: cache_path, step_into: %w(swpr_dev_remote_script))
     runner.converge(described_recipe)
   end
 
-  it "creates the postgres user" do
-    shell = OpenStruct.new(run_command: nil, exitstatus: 1)
-    allow(Mixlib::ShellOut).to receive(:new).and_return(shell)
-
-    expect(chef_run).to run_execute("create postgres user vagrant").with(
-      user: "postgres",
-      sensitive: true
-    )
-  end
-
-  it "doesn't create the user if the user already exists" do
-    shell = OpenStruct.new(run_command: nil, exitstatus: 0)
-    allow(Mixlib::ShellOut).to receive(:new).and_return(shell)
-
-    expect(chef_run).to_not run_execute("create postgres user vagrant")
+  it "executes the script once downloaded" do
+    path     = File.join(cache_path, "heroku_toolbelt.sh")
+    resource = chef_run.remote_file(path)
+    expect(resource).to notify("execute[install heroku_toolbelt via remote script]").to(:run).immediately
   end
 end
