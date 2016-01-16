@@ -2,13 +2,14 @@ default_action :install
 
 property :name, String, name_property: true
 property :url, String, required: true
+property :args, String, default: ""
 
 action :install do
   file_path = ::File.join(Chef::Config[:file_cache_path], "#{name}.sh")
 
   execute "install #{name} via remote script" do
     action :nothing
-    command file_path
+    command "#{file_path} #{args}".rstrip
   end
 
   remote_file file_path do

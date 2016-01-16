@@ -14,8 +14,9 @@ Install/configure swpr_dev
 * Sets the default shell for vagrant user (see attributes)
 * Installs memcached
 * Installs redis
-* Installs postgresql 9.3 (if the postgresql recipe is included)
 * Installs the Heroku toolbelt
+* Installs postgresql 9.3 (if the postgresql recipe is included)
+* Installs latest stable release of rust (if the rustlang recipe is included)
 
 [hub]: https://github.com/github/hub
 
@@ -51,6 +52,12 @@ Installs postgres and sets up some good defaults for dev.
 | `node["postgresql"]["config"]["listen_addresses"]` | `*` |
 | `node["postgresql"]["password"]["postgress"]` | `aad1493719f8846f0360e5dbc7654ac5` |
 | `node["postgresql"]["pg_hba"]` | Updated to allow remote connections from `192.168.0.0/16`
+
+### swpr_dev::rustlang
+
+Installs the latest stable release of Rust.
+
+**Usage:** add `recipe[swpr_dev::rustlang]` to your run list.
 
 ## License
 
