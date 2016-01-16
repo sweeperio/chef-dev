@@ -32,3 +32,5 @@ include_recipe "swpr_dev::_vim"
 
 include_recipe "fasd"
 include_recipe "memcached"
+include_recipe "redisio"
+include_recipe "redisio::enable"

@@ -54,4 +54,9 @@ describe "swpr_dev::default" do
   it "includes the memcached recipe" do
     expect(chef_run).to include_recipe("memcached")
   end
+
+  it "includes the redisio recipes" do
+    expect(chef_run).to include_recipe("redisio")
+    expect(chef_run).to include_recipe("redisio::enable")
+  end
 end

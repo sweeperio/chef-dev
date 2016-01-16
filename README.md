@@ -13,6 +13,7 @@ Install/configure swpr_dev
 * Installs zsh
 * Sets the default shell for vagrant user (see attributes)
 * Installs memcached
+* Installs redis
 * Installs postgresql 9.3 (if the postgresql recipe is included)
 
 [hub]: https://github.com/github/hub

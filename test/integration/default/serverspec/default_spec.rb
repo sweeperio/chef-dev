@@ -47,6 +47,25 @@ describe "swpr_dev" do
     end
   end
 
+  context "redis" do
+    describe service("redis6379") do
+      it { should be_enabled }
+      it { should be_running }
+    end
+
+    describe port(6379) do
+      it { should be_listening }
+    end
+
+    describe command("which redis-cli") do
+      its(:exit_status) { should eq(0) }
+    end
+
+    describe command("which redis-server") do
+      its(:exit_status) { should eq(0) }
+    end
+  end
+
   context "tmux" do
     describe command("which tmux") do
       its(:exit_status) { should eq(0) }
