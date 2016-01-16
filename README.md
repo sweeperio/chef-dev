@@ -12,6 +12,7 @@ Install/configure swpr_dev
 * Makes and installs vim from source (see attributes)
 * Installs zsh
 * Sets the default shell for vagrant user (see attributes)
+* Installs memcached
 * Installs postgresql 9.3 (if the postgresql recipe is included)
 
 [hub]: https://github.com/github/hub

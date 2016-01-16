@@ -12,6 +12,7 @@ supports "ubuntu"
 
 depends "ark",         "~> 0.0"
 depends "fasd",        "~> 1.0"
+depends "memcached",   "~> 2.0"
 depends "open_resty",  "~> 0.0"
 depends "postgresql",  "~> 4.0"
 depends "swpr_core",   "~> 0.0"

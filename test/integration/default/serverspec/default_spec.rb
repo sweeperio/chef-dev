@@ -13,6 +13,17 @@ describe "swpr_dev" do
     end
   end
 
+  context "memcached" do
+    describe service("memcached") do
+      it { should be_enabled }
+      it { should be_running }
+    end
+
+    describe port("11211") do
+      it { should be_listening }
+    end
+  end
+
   context "open resty" do
     describe file("/etc/nginx/sites-available/dev-rails-nginx.conf") do
       it { should exist }

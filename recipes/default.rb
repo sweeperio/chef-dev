@@ -31,3 +31,4 @@ include_recipe "swpr_dev::_tmux"
 include_recipe "swpr_dev::_vim"
 
 include_recipe "fasd"
+include_recipe "memcached"

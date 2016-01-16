@@ -27,6 +27,11 @@
 describe "swpr_dev::default" do
   PRIVATE_RECIPES = %w(_hub _nginx _shell _tmux _vim)
 
+  before do
+    stub_command("dpkg -s memcached")
+    stub_command("getent passwd memcache")
+  end
+
   cached(:chef_run) do
     runner = ChefSpec::SoloRunner.new
     runner.converge(described_recipe)
@@ -44,5 +49,9 @@ describe "swpr_dev::default" do
 
   it "includes the fasd recipe" do
     expect(chef_run).to include_recipe("fasd")
+  end
+
+  it "includes the memcached recipe" do
+    expect(chef_run).to include_recipe("memcached")
   end
 end
