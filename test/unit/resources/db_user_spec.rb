@@ -26,7 +26,7 @@
 
 describe "swpr_dev::postgresql" do
   before do
-    stub_command(/ls \/.*\/recovery.conf/).and_return(false)
+    stub_command(%r{ls /.*/recovery.conf}).and_return(false)
   end
 
   let(:chef_run) do

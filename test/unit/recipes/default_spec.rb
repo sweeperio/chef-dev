@@ -25,7 +25,7 @@
 # THE SOFTWARE.
 
 describe "swpr_dev::default" do
-  PRIVATE_RECIPES = %w(_hub _nginx _shell _tmux _vim)
+  PRIVATE_RECIPES = %w(_hub _nginx _shell _tmux _vim).freeze
 
   cached(:chef_run) do
     runner = ChefSpec::SoloRunner.new

@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/sweeperio/chef-swpr_dev.svg?branch=master)](https://travis-ci.org/sweeperio/chef-swpr_dev)
 
-Install/configure swpr_dev
+Install/configure a kick-ass dev machine!
 
 ## What This Does
 

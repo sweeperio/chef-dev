@@ -34,8 +34,8 @@ describe "swpr_dev::postgresql" do
     it { should exist }
     its(:content) { should match(/^local\s*all\s*postgres\s*ident/) }
     its(:content) { should match(/^local\s*all\s*all\s*ident/) }
-    its(:content) { should match(/^host\s*all\s*all\s*127.0.0.1\/32\s*md5/) }
-    its(:content) { should match(/^host\s*all\s*all\s*::1\/128\s*md5/) }
-    its(:content) { should match(/^host\s*all\s*all\s*192.168.0.0\/16\s*trust/) }
+    its(:content) { should match(%r{^host\s*all\s*all\s*127.0.0.1/32\s*md5}) }
+    its(:content) { should match(%r{^host\s*all\s*all\s*::1/128\s*md5}) }
+    its(:content) { should match(%r{^host\s*all\s*all\s*192.168.0.0/16\s*trust}) }
   end
 end

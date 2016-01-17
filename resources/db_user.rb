@@ -17,7 +17,7 @@ action :create do
 
   execute "create postgres user #{username}" do
     user "postgres"
-    command %Q(psql -c "CREATE ROLE #{username} WITH CREATEDB LOGIN PASSWORD '#{password}'")
+    command %(psql -c "CREATE ROLE #{username} WITH CREATEDB LOGIN PASSWORD '#{password}'")
     sensitive true
   end
 end

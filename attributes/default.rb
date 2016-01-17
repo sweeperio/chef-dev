@@ -3,7 +3,7 @@ default["swpr_dev"]["hub"]["version"] = "2.2.2"
 default["swpr_dev"]["db"]["user"]     = "vagrant"
 default["swpr_dev"]["db"]["password"] = "developerPassword1"
 
-default["swpr_dev"]["golang"]["go_path" ] = "/home/vagrant/go"
+default["swpr_dev"]["golang"]["go_path"] = "/home/vagrant/go"
 default["swpr_dev"]["golang"]["version"]  = "1.5.3"
 default["swpr_dev"]["golang"]["packages"] = %w(
   github.com/tools/godep

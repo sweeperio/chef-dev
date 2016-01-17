@@ -4,7 +4,7 @@ describe "swpr_dev::golang" do
   describe file("/etc/profile.d/go_profile.sh") do
     it { should exist }
     it { should be_file }
-    its(:content) { should contain(%Q(export GOPATH="/home/vagrant/go")) }
+    its(:content) { should contain(%(export GOPATH="/home/vagrant/go")) }
   end
 
   %w(go godoc gofmt).each do |exe|
