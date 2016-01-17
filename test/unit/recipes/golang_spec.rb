@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: swpr_dev
-# Recipe:: _shell
+# Spec:: golang
 #
 # The MIT License (MIT)
 #
@@ -24,10 +24,39 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-package "zsh"
+describe "swpr_dev::golang" do
+  cached(:chef_run) do
+    runner = ChefSpec::SoloRunner.new do |node|
+      node.set["swpr_dev"]["golang"]["go_path"] = "/home/vagrant/go"
+      node.set["swpr_dev"]["golang"]["version"] = "1.5.3"
+    end
 
-cookbook_file("/etc/zsh/zshenv")
+    runner.converge(described_recipe)
+  end
 
-execute "set vagrant shell" do
-  command "chsh -s $(which #{node.attr!('swpr_dev', 'vagrant_shell')}) vagrant"
+  it "converges successfully" do
+    expect { chef_run }.to_not raise_error
+  end
+
+  it "ensures the go_path directory exists" do
+    path = chef_run.node.attr!("swpr_dev", "golang", "go_path")
+
+    expect(chef_run).to create_directory(path).with(
+      owner: "vagrant",
+      group: "vagrant"
+    )
+  end
+
+  it "creates the profile initializer" do
+    expect(chef_run).to create_template("/etc/profile.d/go_profile.sh")
+  end
+
+  it "arks the specified version of go" do
+    version = chef_run.node.attr!("swpr_dev", "golang", "version")
+
+    expect(chef_run).to install_ark("go").with(
+      url: "https://storage.googleapis.com/golang/go#{version}.linux-amd64.tar.gz",
+      version: version
+    )
+  end
 end

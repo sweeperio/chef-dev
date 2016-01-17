@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: swpr_dev
-# Recipe:: _shell
+# Recipe:: golang
 #
 # The MIT License (MIT)
 #
@@ -24,10 +24,33 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-package "zsh"
+go_path  = node.attr!("swpr_dev", "golang", "go_path")
+version  = node.attr!("swpr_dev", "golang", "version")
+packages = node.attr!("swpr_dev", "golang", "packages")
 
-cookbook_file("/etc/zsh/zshenv")
+directory go_path do
+  owner "vagrant"
+  group "vagrant"
+end
 
-execute "set vagrant shell" do
-  command "chsh -s $(which #{node.attr!('swpr_dev', 'vagrant_shell')}) vagrant"
+template "/etc/profile.d/go_profile.sh" do
+  variables(go_path: go_path)
+end
+
+packages.each do |go_pkg|
+  execute("go get #{go_pkg}") do
+    environment("GOPATH" => go_path)
+    action :nothing
+  end
+end
+
+ark "go" do
+  has_binaries %w(bin/go bin/gofmt bin/godoc)
+  url "https://storage.googleapis.com/golang/go#{version}.linux-amd64.tar.gz"
+  version version
+  action :install
+
+  packages.each do |go_pkg|
+    notifies :run, "execute[go get #{go_pkg}]", :immediately
+  end
 end
