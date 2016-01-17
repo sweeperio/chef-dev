@@ -18,6 +18,7 @@ Install/configure swpr_dev
 * Installs postgresql 9.3 (if the `postgresql` recipe is included)
 * Installs latest stable release of rust (if the `rustlang` recipe is included)
 * Installs golang and associated packages (if the `golang` recipe is included)
+* Installs nodejs and global packages (if the `nodejs` recipe is included)
 
 [hub]: https://github.com/github/hub
 
@@ -31,6 +32,7 @@ Install/configure swpr_dev
 | `node["swpr_dev"]["golang"]["go_path"]` | the `GOPATH` directory | `/home/vagrant/go` |
 | `node["swpr_dev"]["golang"]["version"]` | the version of go to install | `1.5.3` |
 | `node["swpr_dev"]["golang"]["packages"]` | packages to `go get` | `godep and gb` see _attributes/default.rb_ |
+| `node["swpr_dev"]["nodejs"]["packages"]` | global node packages to install | `coffee-script, grunt-cli` |
 | `node["swpr_dev"]["tmux"]["version"]` | the version of tmux to install | `2.1` |
 | `node["swpr_dev"]["vim"]["autoconf_opts"]` | params for the ./configure call for vim | `%w(--enable-pythoninterp
 --enable-rubyinterp)` |
@@ -70,6 +72,12 @@ Installs the latest stable release of Rust.
 Installs the specified version of golang and `go gets` packages (see attributes above).
 
 **Usage:** add `recipe[swpr_dev::golang]` to your run list.
+
+### swpr_dev::nodejs
+
+Installs node, npm and any packages define in attributes.
+
+**Usage:** add `recipe[swpr_dev::nodejs]` to your run list.
 
 ## License
 

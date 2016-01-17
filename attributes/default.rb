@@ -10,6 +10,7 @@ default["swpr_dev"]["golang"]["packages"] = %w(
   github.com/constabulary/gb/...
 )
 
+default["swpr_dev"]["nodejs"]["packages"] = %w(coffee-script grunt-cli)
 
 default["swpr_dev"]["tmux"]["version"] = "2.1"
 

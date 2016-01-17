@@ -17,6 +17,7 @@ suites:
       - recipe[swpr_dev::postgresql]
       - recipe[swpr_dev::rustlang]
       - recipe[swpr_dev::golang]
+      - recipe[swpr_dev::nodejs]
     attributes:
       swpr_dev:
         vagrant_shell: zsh
