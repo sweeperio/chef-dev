@@ -26,6 +26,7 @@
 
 describe "swpr_dev::default" do
   PRIVATE_RECIPES = %w(_hub _nginx _shell _tmux _vim).freeze
+  PUBLIC_RECIPES  = %w(apt fasd memcached redisio redisio::enable).freeze
 
   cached(:chef_run) do
     runner = ChefSpec::SoloRunner.new
@@ -39,6 +40,12 @@ describe "swpr_dev::default" do
   PRIVATE_RECIPES.each do |recipe|
     it "includes the #{recipe} recipe" do
       expect(chef_run).to include_recipe("swpr_dev::#{recipe}")
+    end
+  end
+
+  PUBLIC_RECIPES.each do |recipe|
+    it "includes the #{recipe} recipe" do
+      expect(chef_run).to include_recipe(recipe)
     end
   end
 

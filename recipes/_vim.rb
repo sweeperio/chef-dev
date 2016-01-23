@@ -27,6 +27,8 @@
 version    = node.attr!("swpr_dev", "vim", "version")
 source_url = "https://github.com/b4winckler/vim/archive/v#{version}.tar.gz"
 
+package "libgmp-dev"
+
 ark "vim" do
   url source_url
   version version

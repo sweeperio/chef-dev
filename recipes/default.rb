@@ -24,6 +24,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+include_recipe "apt"
+
 include_recipe "swpr_dev::_hub"
 include_recipe "swpr_dev::_nginx"
 include_recipe "swpr_dev::_shell"

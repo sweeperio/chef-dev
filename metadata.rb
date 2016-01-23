@@ -8,6 +8,7 @@ version          "0.1.0"
 
 supports "ubuntu"
 
+depends "apt",         "~> 2.0"
 depends "ark",         "~> 0.0"
 depends "fasd",        "~> 1.0"
 depends "memcached",   "~> 2.0"

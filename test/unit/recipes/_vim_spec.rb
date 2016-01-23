@@ -38,6 +38,10 @@ describe "swpr_dev::_vim" do
     expect { chef_run }.to_not raise_error
   end
 
+  it "installs prerequisite packages" do
+    expect(chef_run).to install_package("libgmp-dev")
+  end
+
   it "arks and installs vim with make" do
     expect(chef_run).to install_with_make_ark("vim").with(
       url: "https://github.com/b4winckler/vim/archive/v7-4-658.tar.gz",
